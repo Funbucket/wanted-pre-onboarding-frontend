@@ -3,7 +3,7 @@ import axios from "axios";
 import { getLocalStorageToken } from "~/utils/auth";
 
 const apiConfig: CreateAxiosDefaults<AxiosInstance> = {
-  baseURL: "http://localhost:8000",
+  baseURL: "https://www.pre-onboarding-selection-task.shop",
   headers: {
     "Content-Type": "application/json",
   },
