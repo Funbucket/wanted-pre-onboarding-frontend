@@ -4,10 +4,11 @@ import { SignIn } from "./pages/signin";
 import { GlobalCSS } from "./styles";
 import { SignUp } from "./pages/signup";
 import { Todo } from "./pages/todo";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
   return (
-    <>
+    <ChakraProvider>
       <GlobalCSS />
       <BrowserRouter>
         <div className="App">
@@ -19,7 +20,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-    </>
+    </ChakraProvider>
   );
 }
 
