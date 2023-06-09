@@ -40,7 +40,9 @@ const SignUp = () => {
         <FormControl>
           <FormLabel>Password</FormLabel>
           <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <Text color="gray">비밀번호는 최소 8자 이상이어야 합니다.</Text>
+          <Text fontSize="md" color="gray">
+            비밀번호는 최소 8자 이상이어야 합니다.
+          </Text>
         </FormControl>
         <Button colorScheme="blue" onClick={handleSignup} isDisabled={!isValidate}>
           회원 가입
