@@ -1,14 +1,20 @@
 import { Box, Button, FormControl, FormLabel, Input, Text, VStack } from "@chakra-ui/react";
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signin } from "~/server/auth";
-import { setLocalStorageToken } from "~/utils/auth";
+import { getLocalStorageToken, setLocalStorageToken } from "~/utils/auth";
 
 const Page = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (getLocalStorageToken()) {
+      return navigate("/todo");
+    }
+  }, []);
 
   const handleSignin = () => {
     signin(email, password).then(async ({ data, status }) => {

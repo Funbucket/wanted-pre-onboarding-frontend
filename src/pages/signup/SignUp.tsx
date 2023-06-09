@@ -2,12 +2,19 @@ import { Box, Button, FormControl, FormLabel, Input, Text, VStack } from "@chakr
 import { useEffect, useState } from "react";
 import { signup } from "~/server/auth";
 import { useNavigate } from "react-router-dom";
+import { getLocalStorageToken } from "~/utils/auth";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isValidate, setIsValidate] = useState(false);
+
+  useEffect(() => {
+    if (getLocalStorageToken()) {
+      return navigate("/todo");
+    }
+  }, []);
 
   const handleSignup = () => {
     signup(email, password).then(async ({ status }) => {

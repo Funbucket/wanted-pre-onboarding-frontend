@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box, VStack, Heading, Text, Checkbox, Input, Button, List, ListItem, Flex } from "@chakra-ui/react";
 import { createTodo, deleteTodo, getTodos, updateTodo } from "~/server/todos";
+import { getLocalStorageToken } from "~/utils/auth";
+import { useNavigate } from "react-router-dom";
 
 interface Todo {
   id: number;
@@ -9,12 +11,17 @@ interface Todo {
 }
 
 const Page = () => {
+  const navigate = useNavigate();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodoTitle, setNewTodoTitle] = useState("");
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
   const [editingTodoTitle, setEditingTodoTitle] = useState("");
 
   useEffect(() => {
+    if (!getLocalStorageToken()) {
+      return navigate("/signin");
+    }
+
     getTodos().then(async ({ data }) => {
       setTodos(data);
     });

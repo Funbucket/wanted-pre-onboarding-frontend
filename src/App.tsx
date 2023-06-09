@@ -5,11 +5,8 @@ import { GlobalCSS } from "./styles";
 import { SignUp } from "./pages/signup";
 import { Todo } from "./pages/todo";
 import { ChakraProvider } from "@chakra-ui/react";
-import { getLocalStorageToken } from "./utils/auth";
 
 function App() {
-  const accessToken = getLocalStorageToken();
-
   return (
     <ChakraProvider>
       <GlobalCSS />
@@ -17,9 +14,9 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signin" element={accessToken ? <Navigate to="/todo" replace /> : <SignIn />} />
-            <Route path="/signup" element={accessToken ? <Navigate to="/todo" replace /> : <SignUp />} />
-            <Route path="/todo" element={!accessToken ? <Navigate to="/signin" replace /> : <Todo />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/todo" element={<Todo />} />
           </Routes>
         </div>
       </BrowserRouter>
