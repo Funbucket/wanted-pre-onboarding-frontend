@@ -14,7 +14,7 @@ const Page = () => {
     if (getLocalStorageToken()) {
       return navigate("/todo");
     }
-  }, []);
+  }, [navigate]);
 
   const handleSignin = () => {
     signin(email, password).then(async ({ data, status }) => {
@@ -46,7 +46,7 @@ const Page = () => {
             css={css`
               cursor: pointer;
             `}
-            color="gray"
+            color="blue.500"
             fontSize="md"
             onClick={() => navigate("/signup")}
           >

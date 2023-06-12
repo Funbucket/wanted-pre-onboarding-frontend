@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { signup } from "~/server/auth";
 import { useNavigate } from "react-router-dom";
 import { getLocalStorageToken } from "~/utils/auth";
+import { css } from "@emotion/react";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const SignUp = () => {
     if (getLocalStorageToken()) {
       return navigate("/todo");
     }
-  }, []);
+  }, [navigate]);
 
   const handleSignup = () => {
     signup(email, password).then(async ({ status }) => {
@@ -51,9 +52,21 @@ const SignUp = () => {
             비밀번호는 최소 8자 이상이어야 합니다.
           </Text>
         </FormControl>
-        <Button colorScheme="blue" onClick={handleSignup} isDisabled={!isValidate}>
-          회원 가입
-        </Button>
+        <VStack>
+          <Button colorScheme="blue" onClick={handleSignup} isDisabled={!isValidate}>
+            회원 가입
+          </Button>
+          <Text
+            css={css`
+              cursor: pointer;
+            `}
+            color="blue.500"
+            fontSize="md"
+            onClick={() => navigate("/signin")}
+          >
+            이미 회원이신가요?
+          </Text>
+        </VStack>
       </VStack>
     </Box>
   );

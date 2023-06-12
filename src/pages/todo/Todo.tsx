@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, VStack, Heading, Text, Checkbox, Input, Button, List, ListItem, Flex } from "@chakra-ui/react";
 import { createTodo, deleteTodo, getTodos, updateTodo } from "~/server/todos";
 import { getLocalStorageToken } from "~/utils/auth";
@@ -25,7 +25,7 @@ const Page = () => {
     getTodos().then(async ({ data }) => {
       setTodos(data);
     });
-  }, []);
+  }, [navigate]);
 
   const handleTodoCreate = () => {
     createTodo(newTodoTitle).then(async ({ data }) => {
